@@ -1,11 +1,12 @@
 import { create } from "zustand";
+import Page from "../components/Material/Page";
 import Button from "../materials/Button";
 import Container from "../materials/Container";
-import Page from "../components/Material/Page";
 
 export interface ComponentConfig {
   name: string;
   defaultProps: Record<string, any>;
+  desc:string;
   component: any;
 }
 
@@ -22,6 +23,7 @@ export const useComponentConfigStore = create<State & Action>((set) => ({
     Container: {
       name: "Container",
       defaultProps: {},
+      desc: "容器",
       component: Container,
     },
     Button: {
@@ -30,10 +32,12 @@ export const useComponentConfigStore = create<State & Action>((set) => ({
         type: "primary",
         text: "按钮",
       },
+      desc: "按钮",
       component: Button,
     },
     Page: {
       name: "Page",
+      desc: "页面",
       defaultProps: {},
       component: Page,
     },
