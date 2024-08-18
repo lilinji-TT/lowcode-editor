@@ -23,8 +23,9 @@ export function ComponentStyle() {
 
     const data = form.getFieldsValue();
     form.setFieldsValue({ ...data, ...curComponent?.styles });
-
+    console.log(toCSSStr(curComponent?.styles));
     setCss(toCSSStr(curComponent?.styles));
+    console.log(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [curComponent]);
 
@@ -69,6 +70,7 @@ export function ComponentStyle() {
   }
 
   const handleEditorChange = debounce((value) => {
+    setCss(value);
     const css: Record<string, any> = {};
 
     try {
@@ -106,7 +108,11 @@ export function ComponentStyle() {
         </Form.Item>
       ))}
       <div className="h-[200px] border-[1px] border-[#ccc]">
-        <CssEditor value={css} onChange={handleEditorChange} />
+        <CssEditor
+          //   value={curComponent?.styles ? css : `.comp{\n\n}`}
+          value={css}
+          onChange={handleEditorChange}
+        />
       </div>
     </Form>
   );
