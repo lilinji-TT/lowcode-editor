@@ -1,41 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { MouseEventHandler, useEffect, useState } from "react";
+import React, { MouseEventHandler, useState } from "react";
 import { useComponentConfigStore } from "../../stores/component-config";
 import { Component, useComponetsStore } from "../../stores/components";
 import HoverMask from "../HoverMask";
 import SelectedMask from "../SelectedMask";
 
 export function EditArea() {
-  const { components, addComponent, curComponentId, setCurComponentId } =
-    useComponetsStore();
+  const { components, curComponentId, setCurComponentId } = useComponetsStore();
   const { componentConfig } = useComponentConfigStore();
-
-  useEffect(() => {
-    addComponent(
-      {
-        id: 222,
-        name: "Container",
-        desc: "容器",
-        props: {},
-        children: [],
-      },
-      1
-    );
-
-    addComponent(
-      {
-        id: 333,
-        name: "Button",
-        props: {
-          text: "无敌",
-        },
-        desc: "按钮",
-        children: [],
-      },
-      222
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   function renderComponents(components: Component[]): React.ReactNode {
     return components.map((component: Component) => {

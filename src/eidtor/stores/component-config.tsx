@@ -5,6 +5,7 @@ import ContainerDev from "../materials/Container/dev";
 import ContainerProd from "../materials/Container/prod";
 import PageDev from "../materials/Page/dev";
 import PageProd from "../materials/Page/prod";
+import RedBookCard from "../materials/Red/dev";
 
 export interface ComponentSetter {
   name: string;
@@ -77,6 +78,31 @@ export const useComponentConfigStore = create<State & Action>((set) => ({
       desc: "按钮",
       dev: ButtonDev,
       prod: ButtonProd,
+    },
+    RedBookCard: {
+      name: "RedBookCard",
+      defaultProps: {},
+      desc: "封面卡片",
+      dev: RedBookCard,
+      prod: RedBookCard,
+      setter: [
+        {
+          name: "sub_title",
+          label: "文本",
+          type: "input",
+        },
+        {
+          name: "desc",
+          label: "文本",
+          type: "input",
+        },
+        {
+          name: "tags",
+          label: "文本",
+          type: "input",
+        },
+      ],
+      props: {},
     },
     Page: {
       name: "Page",
