@@ -1,5 +1,5 @@
 import TextArea from "antd/es/input/TextArea";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useComponetsStore } from "../../../stores/components";
 
 export interface GoToLinkConfig {
@@ -8,12 +8,15 @@ export interface GoToLinkConfig {
 }
 
 export interface GoToLinkProps {
+  value?: string;
   defaultValue?: string;
   onChange?: (config: GoToLinkConfig) => void;
 }
 
+export const ACTION_GO_TO_LINK = "goToLink";
+
 export function GoToLink(props: GoToLinkProps) {
-  const { defaultValue, onChange } = props;
+  const { value: val, defaultValue, onChange } = props;
 
   const { curComponentId } = useComponetsStore();
   const [value, setValue] = useState(defaultValue);
@@ -24,10 +27,14 @@ export function GoToLink(props: GoToLinkProps) {
     setValue(value);
 
     onChange?.({
-      type: "goToLink",
+      type: ACTION_GO_TO_LINK,
       url: value,
     });
   }
+
+  useEffect(() => {
+    setValue(val);
+  }, [val]);
 
   return (
     <div className="mt-[40px]">
